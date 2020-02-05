@@ -32,6 +32,7 @@ endif
 " ===
 let &t_ut=''
 set autochdir
+set fileencodings=utf8,cp936,gb18030,big5 
 
 set nocompatible 
 syntax on
@@ -139,8 +140,8 @@ noremap <silent> k o
 noremap <silent> K O
 
 " U/E keys for 5 times u/e (faster navigation)
-noremap <silent> U 7k
-noremap <silent> E 7j
+noremap <silent> U 5k
+noremap <silent> E 5j
 
 " Faster in-line navigation
 noremap W 5w
@@ -204,6 +205,14 @@ noremap ` ~
 "  Insert Mode Cursor Movement
 inoremap <C-a> <ESC>A
 
+" 括号自动补全
+" inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap } {}
+inoremap < <><ESC>i
+inoremap { {<CR>}<ESC>O
 
 "??????????????????? Adjacent duplicate words
 noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
@@ -274,6 +283,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround' 
 Plug 'neoclide/coc.nvim',{'branch':'release'}
+Plug 'voldikss/vim-translator'
 call plug#end()
 " ===================== End of Plugin Settings =====================
 
@@ -326,6 +336,20 @@ nmap f <Plug>(easymotion-overwin-f)
 
 
 " ==
+" == 翻译
+" ==
+" <Leader>t 翻译光标下的文本，在命令行回显
+nmap <silent> <Leader>t <Plug>Translate
+vmap <silent> <Leader>t <Plug>TranslateV
+" Leader>w 翻译光标下的文本，在窗口中显示
+nmap <silent> <Leader>w <Plug>TranslateW
+vmap <silent> <Leader>w <Plug>TranslateWV
+" Leader>r 替换光标下的文本为翻译内容
+nmap <silent> <Leader>r <Plug>TranslateR
+vmap <silent> <Leader>r <Plug>TranslateRV
+
+
+" ==
 " == coc
 " ==
 " if hidden is not set, TextEdit might fail.
@@ -336,8 +360,7 @@ set nobackup
 set nowritebackup
 
 " Better display for messages
-"set cmdheight=2
-set cmdheight=1
+set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
