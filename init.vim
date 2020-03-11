@@ -105,7 +105,7 @@ set listchars=tab:\|\ ,trail:▫
 set list
 
 " 自动换行
-set wrap
+set nowrap
 
 " 只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行
 set linebreak
@@ -134,18 +134,22 @@ noremap <silent> u k
 noremap <silent> n h
 noremap <silent> e j
 noremap <silent> o l
-noremap <silent> N 0
-noremap <silent> O $
 noremap <silent> k o
 noremap <silent> K O
 
 " U/E keys for 5 times u/e (faster navigation)
-noremap <silent> U 5k
-noremap <silent> E 5j
+noremap <silent> U 15k
+noremap <silent> E 15j
+noremap <c-u> 3k
+noremap <c-e> 3j
 
 " Faster in-line navigation
 noremap W 5w
 noremap B 5b
+noremap <c-o> 2w
+noremap <c-n> 2b
+noremap <silent> N 0
+noremap <silent> O $
 
 noremap = n
 noremap - N
@@ -209,10 +213,11 @@ inoremap <C-a> <ESC>A
 " inoremap ' ''<ESC>i
 inoremap " ""<ESC>i
 inoremap ( ()<ESC>i
+inoremap ) ()
 inoremap [ []<ESC>i
-inoremap } {}
 inoremap < <><ESC>i
 inoremap { {<CR>}<ESC>O
+inoremap } {}
 
 "??????????????????? Adjacent duplicate words
 noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
@@ -222,11 +227,11 @@ noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
-noremap <C-w> <C-w>w
-noremap <C-u> <C-w>k
-noremap <C-e> <C-w>j
-noremap <C-n> <C-w>h
-noremap <C-o> <C-w>l
+noremap <LEADER>w <C-w>w
+noremap <LEADER>u <C-w>k
+noremap <LEADER>e <C-w>j
+noremap <LEADER>n <C-w>h
+noremap <LEADER>o <C-w>l
 
 " Disable the default s key
 noremap s <nop>
@@ -284,6 +289,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround' 
 Plug 'neoclide/coc.nvim',{'branch':'release'}
 Plug 'voldikss/vim-translator'
+Plug 'lilydjwg/fcitx.vim'
 call plug#end()
 " ===================== End of Plugin Settings =====================
 
@@ -297,7 +303,7 @@ let g:bufferline_echo = 0
 " ==
 " == NERDTree
 " ==
-noremap <LEADER>n :NERDTreeToggle<CR>
+noremap tt :NERDTreeToggle<CR>
 let NERDTreeMapOpenExpl = ""
 let NERDTreeMapUpdir = "N"
 let NERDTreeMapUpdirKeepOpen = "n"
@@ -360,7 +366,7 @@ set nobackup
 set nowritebackup
 
 " Better display for messages
-set cmdheight=2
+""set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -400,7 +406,7 @@ nmap <silent>\] <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use D to show documentation in preview window
@@ -467,11 +473,11 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+""nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+""nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
