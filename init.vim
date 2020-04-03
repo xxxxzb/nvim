@@ -165,7 +165,8 @@ let mapleader=" "
 " Save & quit
 nnoremap qq :q<CR>
 nnoremap ss :w<CR>
-inoremap nn <ESC>
+inoremap uu <ESC>
+inoremap aa <ESC>A
 
 " Open the vimrc file anytime
 noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
@@ -207,8 +208,6 @@ noremap <LEADER>/ :set splitbelow<CR>:sp<CR>:term<CR>
 
 " 大小写转换 change case 
 noremap ` ~
-"  Insert Mode Cursor Movement
-inoremap aa <ESC>A
 
 " 括号自动补全
 " inoremap ' ''<ESC>i
