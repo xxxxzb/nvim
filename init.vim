@@ -46,7 +46,7 @@ filetype off
 " === Editor behavior
 " ===
 set number
-set relativenumber
+"set relativenumber
 "set cursorcolumn
 set cursorline
 set colorcolumn=80
@@ -138,16 +138,12 @@ noremap <silent> k o
 noremap <silent> K O
 
 " U/E keys for 5 times u/e (faster navigation)
-noremap <silent> U 15k
-noremap <silent> E 15j
-noremap <c-u> 3k
-noremap <c-e> 3j
+noremap <silent> U 5k
+noremap <silent> E 5j
 
 " Faster in-line navigation
-noremap W 5w
-noremap B 5b
-noremap <c-o> 2w
-noremap <c-n> 2b
+noremap W 3w
+noremap B 3b
 noremap <silent> N 0
 noremap <silent> O $
 
@@ -389,7 +385,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 "nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
-nmap tt :CocCommand explorer<CR>
+"nmap tt :CocCommand explorer<CR>
 " coc-translator
 nmap <LEADER>t <Plug>(coc-translator-p)
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
