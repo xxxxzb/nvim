@@ -137,6 +137,11 @@ noremap <silent> o l
 noremap <silent> k o
 noremap <silent> K O
 
+inoremap <C-u> <Up>
+inoremap <C-e> <Down>
+inoremap <C-n> <Left>
+inoremap <C-o> <Right>
+
 " U/E keys for 5 times u/e (faster navigation)
 noremap <silent> U 5k
 noremap <silent> E 5j
@@ -212,7 +217,8 @@ inoremap ( ()<ESC>i
 inoremap ) ()
 inoremap [ []<ESC>i
 inoremap < <><ESC>i
-inoremap { {<CR>}<ESC>O
+""inoremap { {<CR>}<ESC>O
+inoremap { {}<ESC>i
 inoremap } {}
 
 "??????????????????? Adjacent duplicate words
