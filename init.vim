@@ -164,8 +164,8 @@ let mapleader=" "
 "noremap ; :
 
 " Save & quit
-nnoremap qq :q<CR>
-nnoremap ss :w<CR>
+nnoremap q :q<CR>
+nnoremap s :w<CR>
 inoremap uu <ESC>
 inoremap aa <ESC>A
 
@@ -236,16 +236,15 @@ noremap <LEADER>n <C-w>h
 noremap <LEADER>o <C-w>l
 
 " Disable the default s key
-noremap s <nop>
 noremap S <nop>
 noremap D <nop>
 noremap j <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap su :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap se :set splitbelow<CR>:split<CR>
-noremap sn :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-noremap so :set splitright<CR>:vsplit<CR>
+noremap <LEADER>su :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap <LEADER>se :set splitbelow<CR>:split<CR>
+noremap <LEADER>sn :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap <LEADER>so :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
 noremap <up> :res +5<CR>
@@ -254,9 +253,9 @@ noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
 " Place the two screens up and down
-noremap sh <C-w>t<C-w>K
+noremap <LEADER>sh <C-w>t<C-w>K
 " Place the two screens side by side
-noremap sv <C-w>t<C-w>H
+noremap <LEADER>sv <C-w>t<C-w>H
 
 
 " ===
