@@ -182,10 +182,6 @@ noremap <LEADER>src :source ~/.config/nvim/init.vim<CR>
 noremap <LEADER>st :Startify<CR>
 
 
-" sudo to write
-cnoremap w!! w !sudo tee % >/dev/null
-
-
 " Indentation
 nnoremap < <<
 nnoremap > >>
@@ -222,9 +218,6 @@ inoremap < <><ESC>i
 ""inoremap { {<CR>}<ESC>O
 inoremap { {}<ESC>i
 inoremap } {}
-
-"??????????????????? Adjacent duplicate words
-noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
 
 
 " ===
