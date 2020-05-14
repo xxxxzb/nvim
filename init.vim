@@ -105,7 +105,7 @@ set listchars=tab:\|\ ,trail:▫
 set list
 
 " 自动换行
-set nowrap
+set wrap
 
 " 只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行
 set linebreak
@@ -130,27 +130,31 @@ set sidescrolloff=15
 " < n   o >
 "     e
 "     v
-noremap <silent> u k
+noremap <silent> r k
 noremap <silent> n h
-noremap <silent> e j
+noremap <silent> i j
 noremap <silent> o l
-noremap <silent> k o
-noremap <silent> K O
+" 上下左右plus
+noremap <silent> R 5k
+noremap <silent> I 5j
+noremap <silent> N 0
+noremap <silent> O $
 
-inoremap <C-u> <Up>
-inoremap <C-e> <Down>
-inoremap <C-n> <Left>
-inoremap <C-o> <Right>
+noremap <silent> l o
+noremap <silent> L O
 
-" U/E keys for 5 times u/e (faster navigation)
-noremap <silent> U 5k
-noremap <silent> E 5j
+noremap <silent> k r
+noremap <silent> h i
+noremap <silent> H I
+
+noremap m u
+noremap M <C-r>
+
+noremap u r
 
 " Faster in-line navigation
 noremap W 3w
 noremap B 3b
-noremap <silent> N 0
-noremap <silent> O $
 
 noremap = n
 noremap - N
@@ -166,8 +170,9 @@ let mapleader=" "
 " Save & quit
 nnoremap q :q<CR>
 nnoremap s :w<CR>
-inoremap uu <ESC>
-inoremap aa <ESC>A
+inoremap ii <ESC>
+inoremap <c-e> <ESC>A
+inoremap <c-a> <ESC>I
 
 " Open the vimrc file anytime
 noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
@@ -176,9 +181,6 @@ noremap <LEADER>src :source ~/.config/nvim/init.vim<CR>
 " Open Startify
 noremap <LEADER>st :Startify<CR>
 
-" Undo operations
-noremap l u
-noremap L <C-r>
 
 " sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
@@ -247,10 +249,10 @@ noremap <LEADER>sn :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 noremap <LEADER>so :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
-noremap <up> :res +5<CR>
-noremap <down> :res -5<CR>
-noremap <left> :vertical resize-5<CR>
-noremap <right> :vertical resize+5<CR>
+noremap <LEADER><up> :res +5<CR>
+noremap <LEADER><down> :res -5<CR>
+noremap <LEADER><left> :vertical resize-5<CR>
+noremap <LEADER><right> :vertical resize+5<CR>
 
 " Place the two screens up and down
 noremap <LEADER>sh <C-w>t<C-w>K
@@ -313,13 +315,14 @@ let NERDTreeMapUpdirKeepOpen = "n"
 let NERDTreeMapOpenSplit = ""
 let NERDTreeMapOpenVSplit = "O"
 let NERDTreeMapActivateNode = "o"
-let NERDTreeMapOpenInTab = "I"
-let NERDTreeMapOpenInTabSilent = "i"
+let NERDTreeMapOpenInTab = ""
+let NERDTreeMapOpenInTabSilent = ""
 let NERDTreeMapPreview = ""
 let NERDTreeMapCloseDir = ""
 let NERDTreeMapChangeRoot = "l"
 let NERDTreeMapMenu = ","
 let NERDTreeMapToggleHidden = "zh"
+let NERDTreeMapRefrseh = ""
 
 
 " ==
@@ -352,50 +355,63 @@ nnoremap <LEADER>sudo :w suda://%<CR>
 
 
 " ===
-" === coc
+" === coc 
 " ===
-" fix the most annoying bug that coc has
-"silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-"let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-flutter']
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-"nmap <silent> <TAB> <Plug>(coc-range-select)
-"xmap <silent> <TAB> <Plug>(coc-range-select)
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]	=~ '\s'
-endfunction
-inoremap <silent><expr> <Tab>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<Tab>" :
-			\ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-inoremap <silent><expr> <c-space> coc#refresh()
 
-" Open up coc-commands
-nnoremap <c-c> :CocCommand<CR>
-" Text Objects
-xmap kf <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap kf <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-" Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-"nmap tt :CocCommand explorer<CR>
-" coc-translator
-nmap <LEADER>t <Plug>(coc-translator-p)
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-" Use D to show documentation in preview window
-nnoremap <silent> D :call <SID>show_documentation()<CR>
+"---normal mode--------------------
+" 代码导航
+nmap <silent> <LEADER>cgd <Plug>(coc-definition)
+nmap <silent> <LEADER>cgy <Plug>(coc-type-definition)
+nmap <silent> <LEADER>cgi <Plug>(coc-implementation)
+nmap <silent> <LEADER>cgr <Plug>(coc-references)
+                      
+" 报错导航    
+nmap <silent> <LEADER>c[ <Plug>(coc-diagnostic-prev)
+nmap <silent> <LEADER>c] <Plug>(coc-diagnostic-next)
+
+" 文档       
+nnoremap <silenLEADERt> <LEADER>cd :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" 重命名
+nmap <leader>crn <Plug>(coc-rename)
+" 当前行触发CodeAction
+nmap <leader>ca  <Plug>(coc-codeaction)
+" 当前行触发AutoFix
+nmap <leader>cff  <Plug>(coc-fix-current)
+
+"---input mode----------------
+" 使用Tab来触发补全, 将这放在其他插件之前
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+"---setting -------------------------------
+" 光标所在,高亮其引用
+autocmd CursorHold * silent call CocActionAsync('highlight')
+set updatetime=300
+set signcolumn=yes
+set shortmess+=c
+set nowritebackup
+" 格式化
+command! -nargs=0 Format :call CocAction('format')
+nmap <leader>cfm  <Plug>(coc-fix-current)
+" 折叠
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" import管理
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" Add (Neo)Vim's native statusline support.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
