@@ -171,8 +171,7 @@ let mapleader=" "
 nnoremap q :q<CR>
 nnoremap s :w<CR>
 inoremap ii <ESC>
-inoremap <c-e> <ESC>A
-inoremap <c-a> <ESC>I
+inoremap aa <ESC>A
 
 " Open the vimrc file anytime
 noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
