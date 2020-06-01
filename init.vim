@@ -171,7 +171,7 @@ let mapleader=" "
 nnoremap q :q<CR>
 nnoremap s :w<CR>
 inoremap ii <ESC>
-inoremap aa <ESC>A
+inoremap oo <ESC>A
 
 " Open the vimrc file anytime
 noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
@@ -209,15 +209,15 @@ noremap ` ~
 
 " 括号自动补全
 " inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
-inoremap ( ()<ESC>i
-inoremap ) ()
-inoremap [ []<ESC>i
-inoremap < <><ESC>i
+""inoremap " ""<ESC>i
+""inoremap ( ()<ESC>i
+""inoremap ) ()
+""inoremap [ []<ESC>i
+""inoremap < <><ESC>i
 ""inoremap { {<CR>}<ESC>O
-inoremap { {}<ESC>i
-inoremap } {}
-
+""inoremap { {}<ESC>i
+""inoremap } {}
+""
 
 " ===
 " === Window management
@@ -287,6 +287,7 @@ Plug 'neoclide/coc.nvim',{'branch':'release'}
 Plug 'lilydjwg/fcitx.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'lambdalisue/suda.vim' " do stuff like :sudowrite
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 " ===================== End of Plugin Settings =====================
 
