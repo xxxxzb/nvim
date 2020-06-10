@@ -283,11 +283,12 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround' 
-Plug 'neoclide/coc.nvim',{'branch':'release'}
+"Plug 'neoclide/coc.nvim',{'branch':'release'}
 Plug 'lilydjwg/fcitx.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'lambdalisue/suda.vim' " do stuff like :sudowrite
 Plug 'jiangmiao/auto-pairs'
+Plugin 'zxqfl/tabnine-vim'
 call plug#end()
 " ===================== End of Plugin Settings =====================
 
