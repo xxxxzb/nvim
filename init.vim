@@ -79,6 +79,9 @@ if has('persistent_undo')
 endif
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" 退出插入模式时，自动保存
+au InsertLeave * write
+
 " 搜索
 set hlsearch
 set incsearch
